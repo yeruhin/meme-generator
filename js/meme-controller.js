@@ -5,6 +5,8 @@ var ctx
 var gLineHtml
 var gNextId = 2
 var gCurrLine = 1
+var startX
+var startY
 
 // var dom = {
 //   container: document.querySelector(".main-page"),
@@ -42,7 +44,6 @@ function onAddLine() {
   renderContent()
   gNextId++
   gCurrLine = gNextId
-  addTouch(gCurrLine)
   document.querySelector(`#line${gCurrLine}`).focus()
 }
 
@@ -52,13 +53,11 @@ function renderFirstLines() {
   strHtml[0] = addLine(0)
   strHtml[1] = addLine(1)
   elInputs.innerHTML = strHtml[0] + strHtml[1]
-  addTouch(1)
-  addTouch(2)
   return strHtml
 }
 
 function addLine(id) {
-  return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable="true" ${inputStyle(id)} >`
+  return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" ontouchstart="touchElement(event)" ontouchmove="moveElement(event, this)" onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable ${inputStyle(id)} >`
 }
 
 function inputStyle(id) {
@@ -131,23 +130,20 @@ function onTextShadowToggle() {
   line.classList.toggle('text-shadow')
 }
 
-function addTouch(id) {
-  let startX
-  let startY
-  let elLine = document.querySelector(`#line${id}`)
-
-  elLine.addEventListener('touchstart', function (ev) {
-    startx = parseInt(ev.changedTouches[0].clientX)
-    starty = parseInt(ev.changedTouches[0].clientY)
-    e.preventDefault()
-  }, false)
-
-  elLine.addEventListener('touchmove', function (ev) {
-    elmnt.style.left = parseInt(ev.changedTouches[0].clientX) - startX + 'px';
-    elmnt.style.top = parseInt(ev.changedTouches[0].clientY) - startY + 'px';
-    e.preventDefault()
-  }, false);
+function touchElement(e) {
+  e = e || window.event;
+  e.preventDefault();
+  startX = parseInt(e.changedTouches[0].clientX)
+  startY = parseInt(e.changedTouches[0].clientY)
 }
+
+function moveElement(e, elLine) {
+  e = e || window.event;
+  e.preventDefault();
+  elLine.style.left = parseInt(e.changedTouches[0].clientX) - startX + 'px';
+  elLine.style.top = parseInt(e.changedTouches[0].clientY) - startY + 'px';
+}
+
 
 
 
