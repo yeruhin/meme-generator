@@ -6,6 +6,23 @@ var gLineHtml
 var gNextId = 2
 var gCurrLine = 1
 
+// var dom = {
+//   container: document.querySelector(".main-page"),
+//   drag: document.getElementById("drag"),
+// }
+// var container = {
+//   x: dom.container.getBoundingClientRect().left,
+//   y: dom.container.getBoundingClientRect().top,
+//   w: dom.container.getBoundingClientRect().width,
+//   h: dom.container.getBoundingClientRect().height
+// }
+// var drag = {
+//   w: dom.drag.offsetWidth,
+//   h: dom.drag.offsetHeight
+// }
+
+// target = null;
+
 function init() {
   let img = document.querySelector('.main-img')
   img.onload = () => {
@@ -24,8 +41,9 @@ function onAddLine() {
   elInputs.innerHTML += addLine(gNextId)
   renderContent()
   gNextId++
-  document.querySelector(`#line${gNextId}`).focus()
   gCurrLine = gNextId
+  addTouch(gCurrLine)
+  document.querySelector(`#line${gCurrLine}`).focus()
 }
 
 function renderFirstLines() {
@@ -34,6 +52,8 @@ function renderFirstLines() {
   strHtml[0] = addLine(0)
   strHtml[1] = addLine(1)
   elInputs.innerHTML = strHtml[0] + strHtml[1]
+  addTouch(1)
+  addTouch(2)
   return strHtml
 }
 
@@ -111,8 +131,29 @@ function onTextShadowToggle() {
   line.classList.toggle('text-shadow')
 }
 
+function addTouch(id) {
+  let startX
+  let startY
+  let elLine = document.querySelector(`#line${id}`)
+
+  elLine.addEventListener('touchstart', function (ev) {
+    startx = parseInt(ev.changedTouches[0].clientX)
+    starty = parseInt(ev.changedTouches[0].clientY)
+    e.preventDefault()
+  }, false)
+
+  elLine.addEventListener('touchmove', function (ev) {
+    elmnt.style.left = parseInt(ev.changedTouches[0].clientX) - startX + 'px';
+    elmnt.style.top = parseInt(ev.changedTouches[0].clientY) - startY + 'px';
+    e.preventDefault()
+  }, false);
+}
+
+
+
 function dragElement(elmnt) {
-  
+  debugger
+
   gCurrLine = parseInt((elmnt.id).substr((elmnt.id).length - 1))
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
@@ -122,13 +163,6 @@ function dragElement(elmnt) {
     /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;
   }
-
-  elmnt.addEventListener('touchmove', function(event) {
-  
-    // Place element where the finger is
-    elmnt.style.left = event.changedTouches[0].pageX + 'px';
-    elmnt.style.top = event.changedTouches[0].pageY + 'px';
-  }, false);
 
   function dragMouseDown(e) {
     e = e || window.event;
@@ -164,8 +198,38 @@ function dragElement(elmnt) {
   }
 }
 
+
+// function touchElement(){
+
+//   var box1 = document.getElementById('box1')
+//   var statusdiv = document.getElementById('statusdiv')
+//   var startx = 0
+//   var dist = 0
+
+//   box1.addEventListener('touchstart', function(e){
+//       var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
+//       startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
+//       statusdiv.innerHTML = 'Status: touchstart<br> ClientX: ' + startx + 'px'
+//       e.preventDefault()
+//   }, false)
+
+//   box1.addEventListener('touchmove', function(e){
+//       var touchobj = e.changedTouches[0] // reference first touch point for this event
+//       var dist = parseInt(touchobj.clientX) - startx
+//       statusdiv.innerHTML = 'Status: touchmove<br> Horizontal distance traveled: ' + dist + 'px'
+//       e.preventDefault()
+//   }, false)
+
+//   box1.addEventListener('touchend', function(e){
+//       var touchobj = e.changedTouches[0] // reference first touch point for this event
+//       statusdiv.innerHTML = 'Status: touchend<br> Resting x coordinate: ' + touchobj.clientX + 'px'
+//       e.preventDefault()
+//   }, false)
+
+// }
+
 function onGenerate(elLink) {
-  
+
   getTransInputCoords()
   generate();
   var image = canvas.toDataURL("image/png");
@@ -194,3 +258,5 @@ function renderContent() {
     document.querySelector(`#line${i + 1}`).value = txt.content
   }
 }
+
+
