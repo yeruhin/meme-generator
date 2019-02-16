@@ -138,17 +138,16 @@ function touchElement(e) {
 }
 
 function moveElement(e, elLine) {
+
   e = e || window.event;
   e.preventDefault();
-  elLine.style.left = parseInt(e.changedTouches[0].clientX) - startX + 'px';
-  elLine.style.top = parseInt(e.changedTouches[0].clientY) - startY + 'px';
+
+  elLine.style.left = (e.touches[0].pageX) - (elLine.clientWidth / 2) + 'px';
+  elLine.style.top = (e.touches[0].pageY) - (elLine.clientHeight / 2) + 'px';
 }
 
 
-
-
 function dragElement(elmnt) {
-  debugger
 
   gCurrLine = parseInt((elmnt.id).substr((elmnt.id).length - 1))
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -194,35 +193,6 @@ function dragElement(elmnt) {
   }
 }
 
-
-// function touchElement(){
-
-//   var box1 = document.getElementById('box1')
-//   var statusdiv = document.getElementById('statusdiv')
-//   var startx = 0
-//   var dist = 0
-
-//   box1.addEventListener('touchstart', function(e){
-//       var touchobj = e.changedTouches[0] // reference first touch point (ie: first finger)
-//       startx = parseInt(touchobj.clientX) // get x position of touch point relative to left edge of browser
-//       statusdiv.innerHTML = 'Status: touchstart<br> ClientX: ' + startx + 'px'
-//       e.preventDefault()
-//   }, false)
-
-//   box1.addEventListener('touchmove', function(e){
-//       var touchobj = e.changedTouches[0] // reference first touch point for this event
-//       var dist = parseInt(touchobj.clientX) - startx
-//       statusdiv.innerHTML = 'Status: touchmove<br> Horizontal distance traveled: ' + dist + 'px'
-//       e.preventDefault()
-//   }, false)
-
-//   box1.addEventListener('touchend', function(e){
-//       var touchobj = e.changedTouches[0] // reference first touch point for this event
-//       statusdiv.innerHTML = 'Status: touchend<br> Resting x coordinate: ' + touchobj.clientX + 'px'
-//       e.preventDefault()
-//   }, false)
-
-// }
 
 function onGenerate(elLink) {
 
