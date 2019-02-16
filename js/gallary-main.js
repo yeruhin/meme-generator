@@ -50,10 +50,61 @@ var gImgs = [{
     id: 10,
     url: 'img/010.jpg',
     keywords: ['wtf', 'stupid', ' angry']
+},
+{
+    id: 11,
+    url: 'img/011.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},
+{
+    id: 12,
+    url: 'img/012.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},
+{
+    id: 13,
+    url: 'img/013.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},
+{
+    id: 14,
+    url: 'img/014.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},
+{
+    id: 15,
+    url: 'img/015.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},
+{
+    id: 16,
+    url: 'img/016.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},{
+    id: 17,
+    url: 'img/017.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},{
+    id: 18,
+    url: 'img/018.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},{
+    id: 19,
+    url: 'img/019.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
+},{
+    id: 20,
+    url: 'img/020.jpg',
+    keywords: ['wtf', 'stupid', ' angry']
 }
+
+
+
+
+
 ]
 
-
+initWordFilters()
 //picture show
 printAllGallery();
 
@@ -86,11 +137,30 @@ return`<div class="gallery" onclick="onChooseImage(this)"><img src="${picObj.url
         </div>`
 }
 function onChooseImage(picDiv)
-{   
-    debugger
-    var img=picDiv.innerHTML
-    saveToStorage('Img',img.substr(img.indexOf('img/'),11))
-    window.location.href = 'editor.html'
+{
+   var img=picDiv.innerHTML
+   saveToStorage('Img',img.substr(img.indexOf('img/'),11))
+   window.location.href = 'editor.html'
+
+}
+function initWordFilters()
+{
+    for(var i=1;i<=5;i++)
+    {
+        document.querySelector(`#word-filter${i}`).style.fontSize=`${getRandomInt(6,24)}px`;
+    }
+}
+function onFilterWord(th)
+{
+    var txt=th.dataset.name;
+    onSearchImage(txt);
     
+
+
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
