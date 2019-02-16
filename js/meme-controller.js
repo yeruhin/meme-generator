@@ -126,8 +126,8 @@ function dragElement(elmnt) {
   elmnt.addEventListener('touchmove', function(event) {
   
     // Place element where the finger is
-    elmnt.style.left = event.changedTouches[0].pageX-25 + 'px';
-    elmnt.style.top = event.changedTouches[0].pageY-25 + 'px';
+    elmnt.style.left = event.changedTouches[0].pageX + 'px';
+    elmnt.style.top = event.changedTouches[0].pageY + 'px';
   }, false);
 
   function dragMouseDown(e) {
