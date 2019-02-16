@@ -48,7 +48,6 @@ function inputStyle(id) {
   txt.size = mainImg.offsetHeight / 8
   txt.height = mainImg.offsetHeight
   txt.x = mainImg.offsetLeft + (mainImg.offsetWidth / 2) - (txt.width / 2)
-  console.log(mainImg.offsetTop)
   switch (txt.line) {
     case 'first!!':
       txt.y = Math.abs(mainImg.offsetTop) + (txt.height * 0.05)
@@ -113,18 +112,23 @@ function onTextShadowToggle() {
 }
 
 function dragElement(elmnt) {
-  // debugger
+  
   gCurrLine = parseInt((elmnt.id).substr((elmnt.id).length - 1))
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
     /* if present, the header is where you move the DIV from:*/
     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    document.getElementById(elmnt.id + "header").addEventListener('touchstart', dragTouchMove);
   } else {
     /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;
-    elmnt.addEventListener('touchstart', dragTouchMove);
   }
+
+  elmnt.addEventListener('touchmove', function(event) {
+  
+    // Place element where the finger is
+    elmnt.style.left = event.changedTouches[0].pageX-25 + 'px';
+    elmnt.style.top = event.changedTouches[0].pageY-25 + 'px';
+  }, false);
 
   function dragMouseDown(e) {
     e = e || window.event;
@@ -137,19 +141,8 @@ function dragElement(elmnt) {
     document.onmousemove = elementDrag;
   }
 
-  function dragTouchMove(e) {
-    debugger
-    e = e || window.event;
-    var touch = e.targetTouches[0]
-
-    pos3 = touch.pageX - 25;
-    pos4 = touch.pageY - 25;
-    document.touchend = closeDragElement;
-
-    document.touchmove = elementDrag;
-  }
-
   function elementDrag(e) {
+
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:
@@ -172,7 +165,7 @@ function dragElement(elmnt) {
 }
 
 function onGenerate(elLink) {
-  debugger
+  
   getTransInputCoords()
   generate();
   var image = canvas.toDataURL("image/png");
