@@ -90,6 +90,6 @@ function onChooseImage(picDiv)
     debugger
     var img=picDiv.innerHTML
     saveToStorage('Img',img.substr(img.indexOf('img/'),11))
-    window.location.href = 'main.html'
+    window.location.href = 'editor.html'
 }
 
