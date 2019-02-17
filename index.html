@@ -9,15 +9,14 @@
     <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="icon" href="img/favicon.png">
-    <title>Document</title>
 </head>
 
-<body>
+<body onload="init()">
     <div class="wrapper">
         <!-- navbar -->
         <div class="one">
                 <nav class="navbar navbar-expand-lg navbar-light navbar-custum">
-                        <a class="navbar-brand logo" href="#">Meme</a>
+                        <a class="navbar-brand logo" href="index.html">Meme</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                         </button>
@@ -31,8 +30,9 @@
                       </nav>
 
         </div>
+        <!-- search row -->
         <div class="search-container flex space-between ">
-              <div class="flex"> search mims :<input type="text" class="searcher"name="search" placeholder="Search.." 
+              <div class="flex search-text"> <p>search mims :<p><input type="text" class="searcher"name="search" placeholder="Search.." 
                                onkeyup="onSearchImage(this.value)" ></div>
                <div class="keyword-group flex" role="group">
                     <button type="button" id="word-filter1"class="btn btn-light"
@@ -47,9 +47,13 @@
                             onclick="onFilterWord(this)"data-name="baby">Baby</button>
                   </div >
         </div>
+        <!-- end of search row -->
+        <!-- gallery grid -->
         <div class="gallery-grid">
         </div>
     </div>
+    <!-- end wrapper and gallery -->
+    <!-- the team  -->
     <div id ="the-team"class="team-members flex">
             <section class="bg-light" id="me" style="padding: 0px;">
                     <div class="row">
@@ -58,23 +62,7 @@
                           <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
                           <h4>Moshe Melamed</h4>
                           <p class="text-muted">Lead Marketer</p>
-                          <ul class="list-inline social-buttons">
-                            <li class="list-inline-item">
-                              <a href="#">
-                                  <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                              <a href="#">
-                                  <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                              <a href="#">
-                                  <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                          </ul>
+                          
                         </div>
                       </div>
                       <div class="col-sm-8 flex-align-center">
@@ -92,23 +80,7 @@
                               <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
                               <h4>Alexander yeruhin</h4>
                               <p class="text-muted">Lead Marketer</p>
-                              <ul class="list-inline social-buttons">
-                                <li class="list-inline-item">
-                                  <a href="#">
-                                      <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                  <a href="#">
-                                      <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                  <a href="#">
-                                      <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                              </ul>
+
                             </div>
                           </div>
                           <div class="col-sm-8 flex-align-center">
@@ -122,7 +94,8 @@
 
         </div>
     </div>
-   
+   <!-- end the team -->
+   <!-- contact -->
             <div class="inner-contact">
 
               <h3>Contact!</h3>
@@ -163,7 +136,7 @@
     
                     </div><!-- End Contact Form Area -->
                 </div><!-- End Inner -->
-    
+    <!-- social footer -->
                 <footer class="page-footer">
 
                   <!-- Footer Elements -->
@@ -214,10 +187,11 @@
               
                 </footer>
                 <!-- Footer -->
+    <script src="js/utils.js"></script>
     <script src="lib/jquery/jquery.js"></script>
     <script src="lib/bootstrap/bootstrap.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/gallary-main.js"></script>
+    <script src="js/gallary-controller.js"></script>
+    <script src="js/gallery-service.js"></script>
 </body>
 
 </html>
