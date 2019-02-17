@@ -8,6 +8,23 @@ var gCurrLine = 1
 var startX
 var startY
 
+// var dom = {
+//   container: document.querySelector(".main-page"),
+//   drag: document.getElementById("drag"),
+// }
+// var container = {
+//   x: dom.container.getBoundingClientRect().left,
+//   y: dom.container.getBoundingClientRect().top,
+//   w: dom.container.getBoundingClientRect().width,
+//   h: dom.container.getBoundingClientRect().height
+// }
+// var drag = {
+//   w: dom.drag.offsetWidth,
+//   h: dom.drag.offsetHeight
+// }
+
+// target = null;
+
 function init() {
   let img = document.querySelector('.main-img')
   img.onload = () => {
@@ -40,7 +57,7 @@ function renderFirstLines() {
 }
 
 function addLine(id) {
-  return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" ontouchstart="touchElement(event,this)" ontouchmove="moveElement(event, this)" ontouchend="dropElement" (elLine) onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable ${inputStyle(id)} >`
+  return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" ontouchstart="touchElement(event)" ontouchmove="moveElement(event, this)" onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable ${inputStyle(id)} >`
 }
 
 function inputStyle(id) {
@@ -113,10 +130,9 @@ function onTextShadowToggle() {
   line.classList.toggle('text-shadow')
 }
 
-function touchElement(e,elLine) {
+function touchElement(e) {
   e = e || window.event;
   e.preventDefault();
-  elLine.focus()
   startX = parseInt(e.changedTouches[0].clientX)
   startY = parseInt(e.changedTouches[0].clientY)
 }
@@ -128,10 +144,6 @@ function moveElement(e, elLine) {
 
   elLine.style.left = (e.touches[0].pageX) - (elLine.clientWidth / 2) + 'px';
   elLine.style.top = (e.touches[0].pageY) - (elLine.clientHeight / 2) + 'px';
-}
-
-function dropElement(elLine) {
-  elLine.focus()
 }
 
 
