@@ -14,7 +14,6 @@ function init() {
   img.onload = ()=>{
     canvas = document.querySelector('#canvas');
     ctx = canvas.getContext('2d');
-    // modalOpen()
     gLineHtml = renderFirstLines()
     document.querySelector('#line1').focus()
   }
@@ -80,7 +79,7 @@ function uploadImg(ev) {
 
 }
 
-function activateMove(ev) {
+function activateMove() {
   isClicked = true
   startX = parseInt(e.clientX - offsetX);
   startY = parseInt(e.clientY - offsetY);
@@ -122,7 +121,7 @@ function touchElement(e,elLine) {
 }
 
 function moveElement(e, elLine) {
-  // debugger
+  
   e = e || window.event;
   e.preventDefault();
   elLine.style.top = (e.touches[0].pageY) - (elLine.clientHeight / 2) + 'px';
@@ -179,7 +178,7 @@ function onGenerate(elLink) {
   
   getTransInputCoords()
   generate();
-  var image = canvas.toDataURL("image/png");
+  var image = canvas.toDataURL();
   elLink.href = image;
 }
 
