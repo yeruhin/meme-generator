@@ -11,9 +11,26 @@
 </head>
 
 <body onload="init()">
+
     <div class="main-page">
 
-        <header class="header">Header</header>
+        <header class="header">
+            <nav class="navbar navbar-expand-lg navbar-light navbar-custum">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" onclick="getPos()"
+                    onmouseup="setTimeout(getMove,500)">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="#">Gallery <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="#">generate mem</a>
+                        <a class="nav-item nav-link" href="#">about</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
         <main class="main-container">
 
@@ -48,7 +65,7 @@
                                 ❏
                             </button>
                             <button type="button" class="btn btn-secondary" onclick="onAddLine()">
-                                    ＋
+                                ＋
                             </button>
                         </div>
                         <!-- End of ToolBar -->
@@ -60,8 +77,8 @@
                             Download
                         </button>
                         <button type="button" class="btn btn-outline-success btn-lg btn-block relative">
-                            <input id="upload" class="opacity" type="file" name="image" accept='image/*' onchange="uploadImg(event)"/>  
-                            Upload File  
+                            <input id="upload" class="opacity" type="file" name="image" accept='image/*' onchange="uploadImg(event)" />
+                            Upload File
                         </button>
                         <!-- End Of Upload & Download Buttons -->
                     </section>
@@ -72,12 +89,12 @@
         <footer>Footer</footer>
     </div>
 
-    <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/utils.js"></script>
-    
+
 </body>
 
 </html>
