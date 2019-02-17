@@ -6,6 +6,8 @@ var gLineHtml
 var gNextId = 2
 var gCurrLine = 1
 var gImgTop = null
+var startX
+var startY
 
 function init() {
   let img = document.querySelector('.main-img')
@@ -41,7 +43,7 @@ function renderFirstLines() {
 }
 
 function addLine(id) {
-  return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" ontouchstart="touchElement(event)" ontouchmove="moveElement(event, this)" onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable ${inputStyle(id)} >`
+   return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" ontouchstart="touchElement(event,this)" ontouchmove="moveElement(event, this)" ontouchend="dropElement" (elLine) onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable ${inputStyle(id)} >`
 }
 
 function inputStyle(id) {
@@ -111,9 +113,10 @@ function onTextShadowToggle() {
   line.classList.toggle('text-shadow')
 }
 
-function touchElement(e) {
+function touchElement(e,elLine) {
   e = e || window.event;
   e.preventDefault();
+  elLine.focus()
   startX = parseInt(e.changedTouches[0].clientX)
   startY = parseInt(e.changedTouches[0].clientY)
 }
@@ -122,12 +125,12 @@ function moveElement(e, elLine) {
   // debugger
   e = e || window.event;
   e.preventDefault();
-  if (parseInt(e.changedTouches[0].clientX) - startX 
-  && parseInt(e.changedTouches[0].clientY) - startY){
+  elLine.style.top = (e.touches[0].pageY) - (elLine.clientHeight / 2) + 'px';
+  elLine.style.left = (e.touches[0].pageX) - (elLine.clientWidth / 2) + 'px';
+}
 
-  }
-  elLine.style.left += parseInt(e.changedTouches[0].screenX) - startX + 'px';
-  elLine.style.top += parseInt(e.changedTouches[0].screenY) - startY+ 'px';
+function dropElement(elLine) {
+  elLine.focus()
 }
 
 function dragElement(elmnt) {
