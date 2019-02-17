@@ -41,7 +41,7 @@ function renderFirstLines() {
 }
 
 function addLine(id) {
-  return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" onclick="dragElement(this)" onkeypress="widthGrow(this,event)" contenteditable="true" ${inputStyle(id)} >`
+  return `<input class="trans-input text-shadow outline" id="line${id + 1}" type="text" ontouchstart="touchElement(event)" ontouchmove="moveElement(event, this)" onclick="dragElement(this)" onkeypress="widthGrow(this)" contenteditable ${inputStyle(id)} >`
 }
 
 function inputStyle(id) {
@@ -109,6 +109,25 @@ function onTextShadowToggle() {
   var line = document.querySelector(`#line${gCurrLine}`)
   textShadowToggle(gCurrLine-1)
   line.classList.toggle('text-shadow')
+}
+
+function touchElement(e) {
+  e = e || window.event;
+  e.preventDefault();
+  startX = parseInt(e.changedTouches[0].clientX)
+  startY = parseInt(e.changedTouches[0].clientY)
+}
+
+function moveElement(e, elLine) {
+  // debugger
+  e = e || window.event;
+  e.preventDefault();
+  if (parseInt(e.changedTouches[0].clientX) - startX 
+  && parseInt(e.changedTouches[0].clientY) - startY){
+
+  }
+  elLine.style.left += parseInt(e.changedTouches[0].screenX) - startX + 'px';
+  elLine.style.top += parseInt(e.changedTouches[0].screenY) - startY+ 'px';
 }
 
 function dragElement(elmnt) {
