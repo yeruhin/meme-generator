@@ -6,7 +6,9 @@ body{
   height: 100vh;
   max-width: 100%
 }
+.logo{
 
+}
 .wrapper{
     display: grid;
     grid-template-rows: auto 50px 2fr;
@@ -35,7 +37,6 @@ body{
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
-
 /* gallery css */
   .gallery-grid{
     display:grid;
@@ -120,10 +121,15 @@ body{
       grid-template-columns: 100%;
     }
   }
+  @media only screen and (max-width:  480px)  {
+  .search-container{
+    flex-direction: column;
+  } 
+  }
   /* end of gallery css */
 
 .team-members{
-  background-color: red;
+
   margin-bottom:20px;
   border-bottom: 1px solid rgb(211, 211, 211);
   border-top: 1px solid rgb(211, 211, 211);
@@ -149,6 +155,7 @@ height: 150px;
 .flex{
   display:flex;
 }
+
 .space-between{
   justify-content: space-between;
 }
@@ -166,10 +173,13 @@ height: 150px;
   max-width: 800px;
   margin: 0 auto;
 }
+
 #contact{
   padding:10px 0 10px;
 }
-
+.inner-contact h3{
+  margin-bottom:20px;
+}
 .contact-text{
   margin:45px auto;
 }

@@ -31,7 +31,9 @@ canvas{
 }
 
 footer{
-  background-color: rgb(211, 211, 211);
+  background-color: #dfd5d5;
+  display: flex;
+  align-items: center;
 }
 
 .opt-button
@@ -82,7 +84,7 @@ footer{
   
   .space-between {
     justify-content: space-between; }
-  
+
   .space-around {
     justify-content: space-around; }
   .margin-center{
@@ -235,7 +237,9 @@ footer{
 .btn-group{
   margin-bottom: 8px;
 }
-
+.mb-5 {
+  margin: 0 !important;
+}
 
 @media (min-width:800px){
   .main-container{
